@@ -1,0 +1,51 @@
+# C++ objects and libs
+*.slo
+*.lo
+*.o
+*.obj
+*.suo
+*.tlog
+*.ilk
+*.meta
+*.pch
+*.lib
+*.a
+*.la
+*.loi
+*.dll
+*.so
+*.exe
+*.out
+*.app
+*.ipa
+*.dylib
+
+# Qt specific
+CMakeLists.txt.user
+*.pro.user
+*.pro.user.*
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+Makefile*
+*build-*
+*.qmake.stash
+
+# CMake specific
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+# Windows specific
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
