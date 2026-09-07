@@ -27,6 +27,15 @@ set(PROJECT_SOURCES
         src/Entry.h
 )
 
+# Embed version info + app manifest on Windows so the exe shows
+# proper publisher/description and execution level instead of blank
+# metadata (blank metadata increases SmartScreen/SAC suspicion).
+if(WIN32)
+    list(APPEND PROJECT_SOURCES src/version.rc)
+    # Let windres find src/app.manifest referenced from version.rc
+    set(CMAKE_RC_FLAGS "${CMAKE_RC_FLAGS} -I${CMAKE_CURRENT_SOURCE_DIR}/src")
+endif()
+
 add_executable(PasswordManager
     ${PROJECT_SOURCES}
 )
