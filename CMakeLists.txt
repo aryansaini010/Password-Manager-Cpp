@@ -30,10 +30,13 @@ set(PROJECT_SOURCES
 # Embed version info + app manifest on Windows so the exe shows
 # proper publisher/description and execution level instead of blank
 # metadata (blank metadata increases SmartScreen/SAC suspicion).
+# NOTE: built as a separate OBJECT library with NO Qt linkage, because
+# windres splits include paths containing spaces (e.g. "D:/QT Creator/...")
+# when invoking its preprocessor. This target only needs src/ itself.
 if(WIN32)
-    list(APPEND PROJECT_SOURCES src/version.rc)
-    # Let windres find src/app.manifest referenced from version.rc
-    set(CMAKE_RC_FLAGS "${CMAKE_RC_FLAGS} -I${CMAKE_CURRENT_SOURCE_DIR}/src")
+    add_library(app_metadata OBJECT src/version.rc)
+    target_include_directories(app_metadata PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+    list(APPEND PROJECT_SOURCES $<TARGET_OBJECTS:app_metadata>)
 endif()
 
 add_executable(PasswordManager
